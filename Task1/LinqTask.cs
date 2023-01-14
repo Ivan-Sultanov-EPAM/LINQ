@@ -31,7 +31,7 @@ namespace Task1
         {
             return from c in customers
                    join s in suppliers on c.Country equals s.Country into g
-                   select (c, g.Where(g => g.City == c.City));
+                   select (c, g.Where(s => s.City == c.City));
         }
 
         public static IEnumerable<Customer> Linq3(IEnumerable<Customer> customers, decimal limit)
@@ -131,7 +131,7 @@ namespace Task1
                     c => c.City,
                     c => new
                     {
-                        Count = c.Orders.Count(),
+                        Count = c.Orders.Length,
                         OrdersTotal = c.Orders.Sum(o => o.Total)
                     }
                 )
